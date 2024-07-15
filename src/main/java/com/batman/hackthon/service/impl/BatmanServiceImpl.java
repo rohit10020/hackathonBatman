@@ -33,7 +33,11 @@ public class BatmanServiceImpl implements BatmanService {
     }
 
     private void sendEmail(BatmanEntity batmanEntity) throws MessagingException, UnsupportedEncodingException {
-        emailSender.sendEmail("rohit.r.gupta@sunlife.com", "Issue Number : "+batmanEntity.getIssueNumber(), batmanEntity.getIssueDescription());
-
+        String msgText = new String( "This message has been sent to you automatically because\n" +
+                "a issue is occured is Sun life application " + batmanEntity.getApplicationName() + ".\n\n" +
+                "Environment: " + batmanEntity.getEnv() + "\n" +
+                "Your e-mail address has been changed to "  + ".\n" +
+                "The change happened at " + (new java.util.Date().toString()));
+        emailSender.sendEmail("rohit.r.gupta@sunlife.com", "Issue Number : "+batmanEntity.getIssueNumber(), msgText);
     }
 }
